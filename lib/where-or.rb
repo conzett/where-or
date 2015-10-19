@@ -84,7 +84,7 @@ ActiveSupport.on_load(:active_record) do
       self
     end
 
-    private def structurally_compatible_for_or?(other) # :nodoc:
+    def structurally_compatible_for_or?(other) # :nodoc:
       (ActiveRecord::Relation::SINGLE_VALUE_METHODS - [:from]).all? { |m| send("#{m}_value") == other.send("#{m}_value") } &&
         (ActiveRecord::Relation::MULTI_VALUE_METHODS - [:extending, :where, :having, :bind]).all? { |m| send("#{m}_values") == other.send("#{m}_values") }
       # https://github.com/rails/rails/commit/2c46d6db4feaf4284415f2fb6ceceb1bb535f278
